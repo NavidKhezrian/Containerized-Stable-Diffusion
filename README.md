@@ -32,7 +32,7 @@ You have two approaches to choose from:
   Use the provided `singularity.def` file to build a Singularity image directly with the following command:
 
   ```bash
-  sudo singularity build my_container.sif singularity.def
+  sudo singularity build workshop-s-image.sif singularity.def
   ```
 
 - **Create Docker Image and Convert to Singularity (Method B)**:
@@ -42,13 +42,13 @@ You have two approaches to choose from:
   1. Build the Docker image:
 
      ```bash
-     sudo docker build -t my_container .
+     sudo docker build -t workshop:v1 .
      ```
 
   2. Convert the Docker image to a Singularity image:
 
      ```bash
-     sudo docker run -v /var/run/docker.sock:/var/run/docker.sock -v /tmp/test:/output --privileged -t --rm quay.io/singularity/docker2singularity my_container
+     sudo docker run -v /var/run/docker.sock:/var/run/docker.sock -v /tmp/test:/output --privileged -t --rm quay.io/singularity/docker2singularity workshop:v1
      ```
 
 ### 3. Resource Request in HPC System
@@ -66,9 +66,7 @@ When running your Singularity container on the FAU HPC system, ensure you reques
   This allocates the specified GPU resources for one hour. After obtaining the allocated resources, you can run the Singularity container using a command similar to the following:
 
   ```bash
-  singularity run --bind /home/vault/b116ba/b116ba17/workshop/output:/user/source/output \
-  --bind /home/vault/b116ba/b116ba17/workshop/stable-diffusion-v1-5:/user/source \
-  /stable-diffusion-v1-5 workshop.sif --prompt "Iron Man, (Arnold Tsang, Toru Nakayama), Masterpiece, Studio Quality, 6k , toa, toaair, 1boy, glowing, axe, mecha, science_fiction, solo, weapon , jungle , green_background, nature, outdoors, solo, tree, weapon, mask, dynamic lighting, detailed shading, digital texture painting"
+  singularity run --bind /home/vault/b116ba/b116ba17/workshop/output:/user/source/output --bind /home/vault/b116ba/b116ba17/workshop/stable-diffusion-v1-5:/user/source/stable-diffusion-v1-5 workshop-d2s-image.sif --prompt "portrait Anime black girl cute-fine-face, pretty face, realistic shaded Perfect face, fine details. Anime. realistic shaded lighting by Ilya Kuvshinov Giuseppe Dangelico Pino and Michael Garmash and Rob Rey, IAMAG premiere, WLOP matte print, cute freckles, masterpiece" --n_samples 4
   ```
 
   Customize the paths and commands to suit your specific job requirements.
