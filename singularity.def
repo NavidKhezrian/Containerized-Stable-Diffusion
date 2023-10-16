@@ -1,0 +1,17 @@
+Bootstrap: docker
+From: tensorflow/tensorflow:2.10.0-gpu
+
+%post
+    # Set the working directory inside the container to /user/source
+    mkdir -p /user/source
+
+%files
+    requirements.txt /user/source/requirements.txt
+    main.py /user/source/main.py
+
+%post
+    # Install Python packages listed in requirements.txt and specify an extra index URL for PyTorch
+    pip install -r /user/source/requirements.txt --extra-index-url https://download.pytorch.org/whl/cu117
+
+%runscript
+    python /user/source/main.py
