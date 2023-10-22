@@ -2,8 +2,8 @@
 #
 #SBATCH --ntasks=16
 #SBATCH --time=06:00:00
-#SBATCH --gres=gpu:a40:1
-#SBATCH --partition=a40
+#SBATCH --gres=gpu:a100:1
+#SBATCH --partition=1000
 #SBATCH --export=NONE
 
 unset SLURM_EXPORT_ENV
