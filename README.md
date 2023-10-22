@@ -76,7 +76,7 @@ When running your Singularity container on the FAU HPC system, ensure you reques
   In this method, you specify the required resources and the command to run the Singularity container within a `jobfile.sh`. You can then run this file with the following command:
 
   ```bash
-  srun jobfile.sh
+  sbatch jobfile.sh
   ```
 
   This approach is suitable for batch processing and encapsulates resource requests and job execution in a script.
