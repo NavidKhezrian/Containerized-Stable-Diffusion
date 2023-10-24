@@ -14,4 +14,4 @@ From: tensorflow/tensorflow:2.10.0-gpu
     pip install -r /user/source/requirements.txt --extra-index-url https://download.pytorch.org/whl/cu117
 
 %runscript
-    python /user/source/main.py
+    exec python /user/source/main.py "$@"
